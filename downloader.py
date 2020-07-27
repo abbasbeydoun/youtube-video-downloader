@@ -1,5 +1,4 @@
 from pytube import YouTube
-import os
 import sys
 
 video_size = 1
@@ -23,7 +22,7 @@ def prompt_video_url():
     user_input_valid = False
     if not user_input_valid:
         user_input = input('\nPlease give me the URL of your video: ')
-        user_input_valid = True if user_input.startswith('https://www.youtube.com/watch?v=') else prompt_video_url()
+        user_input_valid = True if user_input.startswith('https://www.youtube.com/') or user_input.startswith('https://youtu.be/') else prompt_video_url()
     return user_input
 
 def prompt_download_mode():
@@ -91,5 +90,6 @@ def main():
     youtube_obj = verify_video_existence(video_url)
     download_mode = int(prompt_download_mode())
     download(download_mode, youtube_obj)
+    sys.exit(0)
 
 main()
